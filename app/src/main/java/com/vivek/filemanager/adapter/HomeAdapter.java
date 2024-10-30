@@ -60,46 +60,14 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (viewType == 0)
-            return new SearchBarViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.searchbar_item, parent, false));
-        else if (viewType == 1)
-            return new MainMenuViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.rv_item, parent, false));
-        else if (viewType == 2) {
-            return new StorageSpaceViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.storage_space_item, parent, false));
-        } else if (viewType == 3){
-            return new CleanerViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.cleaner_item, parent, false));
-        }else
-            return new RecentItemViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),R.layout.recent_item,parent,false));
+        return new MainMenuViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.rv_item, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
-        if (holder.getItemViewType() == 0) {
-            SearchBarViewHolder holder1 = (SearchBarViewHolder) holder;
-            holder1.onBind();
-        } else if (holder.getItemViewType() == 1) {
-
-            MainMenuViewHolder holder1 = (MainMenuViewHolder) holder;
-//            holder1.onBind();
-
-            holder1.binding.rv.setLayoutManager(new GridLayoutManager(holder1.itemView.getContext(), 4));
-            holder1.binding.rv.setAdapter(homeAppAdapter);
-
-        } else if (holder.getItemViewType() == 2) {
-
-            StorageSpaceViewHolder viewHolder = (StorageSpaceViewHolder) holder;
-            viewHolder.onBind();
-        } else if (holder.getItemViewType() == 3){
-                    CleanerViewHolder cleanerViewHolder = (CleanerViewHolder) holder;
-                    cleanerViewHolder.onBind();
-        }else {
-
-
-            RecentItemViewHolder recentItemViewHolder  = (RecentItemViewHolder) holder;
-            recentItemViewHolder.onBind();
-
-        }
+        MainMenuViewHolder holder1 = (MainMenuViewHolder) holder;
+        holder1.binding.rv.setLayoutManager(new GridLayoutManager(holder1.itemView.getContext(), 4));
+        holder1.binding.rv.setAdapter(homeAppAdapter);
     }
 
     ArrayList<File> img(File file) {
@@ -128,22 +96,12 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0) {
-            return 0;
-        } else if (position == 1) {
-            return 1;
-        } else if (position == 2) {
-            return 2;
-        } else if (position == 3) {
-            return 3;
-        } else {
-            return 4;
-        }
+        return 1;
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return 1;
     }
 
     public void notifyAppData() {
@@ -385,19 +343,19 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         public void onBind() {
 //            binding.constraintLayout3.setOnClickListener(v -> mainActivity.startActivity(new Intent(mainActivity, CleanerActivity.class)));
-            binding.constraintLayout3.setOnClickListener(v -> ((AppCompatActivity)mainActivity).getSupportFragmentManager().beginTransaction().replace(MainActivity.MAIN_CONTAINER,new CleanerFragment()).addToBackStack(null).commit());
+            binding.constraintLayout3.setOnClickListener(v -> ((AppCompatActivity) mainActivity).getSupportFragmentManager().beginTransaction().replace(MainActivity.MAIN_CONTAINER, new CleanerFragment()).addToBackStack(null).commit());
             ActivityManager actManager = (ActivityManager) mainActivity.getSystemService(Context.ACTIVITY_SERVICE);
             ActivityManager.MemoryInfo memInfo = new ActivityManager.MemoryInfo();
             actManager.getMemoryInfo(memInfo);
             long availMem = memInfo.availMem;
             long totalMemory = memInfo.totalMem;
-            binding.tvRam.setText(String.format("%s Used / %s",Formatter.formatFileSize(mainActivity,totalMemory),Formatter.formatFileSize(mainActivity,availMem)));
+            binding.tvRam.setText(String.format("%s Used / %s", Formatter.formatFileSize(mainActivity, totalMemory), Formatter.formatFileSize(mainActivity, availMem)));
 
         }
     }
 
-    class RecentItemViewHolder extends RecyclerView.ViewHolder{
-        RecentItemBinding  binding;
+    class RecentItemViewHolder extends RecyclerView.ViewHolder {
+        RecentItemBinding binding;
 
         public RecentItemViewHolder(@NonNull @NotNull RecentItemBinding itemView) {
             super(itemView.getRoot());
@@ -406,27 +364,27 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         public void onBind() {
             RecentImageAdapter adapter = new RecentImageAdapter(mainActivity);
-            binding.rv.setLayoutManager(new GridLayoutManager(mainActivity,4));
+            binding.rv.setLayoutManager(new GridLayoutManager(mainActivity, 4));
             binding.rv.setAdapter(adapter);
             Executors.newSingleThreadExecutor().execute(() -> {
                 ArrayList<File> allFiles = new ArrayList<>();
-                if (Utils.EXTERNAL_FILE != null){
+                if (Utils.EXTERNAL_FILE != null) {
                     allFiles.addAll(shortFile(img(Utils.EXTERNAL_FILE)));
                 }
-                if (Utils.SD_CARD_FILE != null){
+                if (Utils.SD_CARD_FILE != null) {
                     allFiles.addAll(shortFile(img(Utils.SD_CARD_FILE)));
                 }
-                for (File file : allFiles){
-                    Log.d("TAG", "SNJKLHNJKNDUIJNBKJND: "+file);
+                for (File file : allFiles) {
+                    Log.d("TAG", "SNJKLHNJKNDUIJNBKJND: " + file);
                 }
-                if (allFiles.size()>0){
+                if (allFiles.size() > 0) {
                     adapter.addAll(allFiles);
                     mainActivity.runOnUiThread(() -> {
                         binding.tvNoImage.setVisibility(View.GONE);
                         binding.loader.setVisibility(View.GONE);
-                        binding.textView27.setText(String.format("%d Image",allFiles.size()));
+                        binding.textView27.setText(String.format("%d Image", allFiles.size()));
                     });
-                }else {
+                } else {
                     mainActivity.runOnUiThread(() -> {
                         binding.rv.setVisibility(View.GONE);
                         binding.tvNoImage.setVisibility(View.VISIBLE);
@@ -442,7 +400,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 bundle.putString("FILE", "Images");
                 ImageFragment imageFragment = new ImageFragment();
                 imageFragment.setArguments(bundle);
-                ((AppCompatActivity) mainActivity).getSupportFragmentManager().beginTransaction().replace(MainActivity.MAIN_CONTAINER,imageFragment).addToBackStack(null).commit();
+                ((AppCompatActivity) mainActivity).getSupportFragmentManager().beginTransaction().replace(MainActivity.MAIN_CONTAINER, imageFragment).addToBackStack(null).commit();
             });
         }
     }

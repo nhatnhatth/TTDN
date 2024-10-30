@@ -44,15 +44,15 @@ public class ImageFragment extends Fragment {
         if (argPath.equals(apps[0])){
             binding.tvTitle.setText(apps[0]);
             pagerAdapter.addFragment(new AllImageFragment(),"Image");
-            pagerAdapter.addFragment(new ImageFolderFragment(),"Album");
+//            pagerAdapter.addFragment(new ImageFolderFragment(),"Album");
         }else if (argPath.equals(apps[1])){
             binding.tvTitle.setText(apps[1]);
             pagerAdapter.addFragment(new SongFragment(),"Song");
-            pagerAdapter.addFragment(new SongFolderFragment(),"Albums");
+//            pagerAdapter.addFragment(new SongFolderFragment(),"Albums");
         }else if (argPath.equals(apps[2])){
             binding.tvTitle.setText(apps[2]);
             pagerAdapter.addFragment(new VideoFragment(),"Video");
-            pagerAdapter.addFragment(new VideoFolderFragment(),"Folders");
+//            pagerAdapter.addFragment(new VideoFolderFragment(),"Folders");
         }else if (argPath.equals(apps[3])){
             binding.tvTitle.setText(apps[3]);
 
@@ -71,6 +71,7 @@ public class ImageFragment extends Fragment {
 
         binding.viewPager.setAdapter(pagerAdapter);
         binding.tabLayout.setupWithViewPager(binding.viewPager);
+        binding.tabLayout.setVisibility(View.GONE);
 
         binding.ivBack.setOnClickListener(v -> getActivity().onBackPressed());
 

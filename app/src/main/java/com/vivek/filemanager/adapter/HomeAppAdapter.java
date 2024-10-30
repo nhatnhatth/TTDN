@@ -66,7 +66,7 @@ public class HomeAppAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemCount() {
-        return apps.length;
+        return apps.length - 1;
     }
 
     public void notifyApps() {

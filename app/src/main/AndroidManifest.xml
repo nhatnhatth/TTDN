@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.vivek.filemanager">
+    package="com.yugi.filemanager">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission
         android:name="android.permission.CLEAR_APP_CACHE"
@@ -20,10 +21,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FileManager">
         <activity
-            android:name="com.vivek.filemanager.SelectFileActivity"
+            android:name="com.yugi.filemanager.SelectFileActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.vivek.filemanager.SplashActivity"
+            android:name="com.yugi.filemanager.SplashActivity"
             android:screenOrientation="portrait" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,7 +33,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.vivek.filemanager.MainActivity"
+            android:name="com.yugi.filemanager.MainActivity"
             android:screenOrientation="portrait" />
 
         <provider

@@ -57,7 +57,7 @@ public class HomeAppAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             viewHolder.binding.img.setImageResource(R.drawable.ic_download);
             viewHolder.binding.size.setText(Formatter.formatFileSize(holder.itemView.getContext(), (Utils.EXT_DOWNLOAD_SIZE)));
         } else {
-            viewHolder.binding.img.setImageResource(R.drawable.ic_more);
+            viewHolder.binding.img.setImageResource(R.drawable.ic_app_favourite);
             viewHolder.binding.size.setText("");
         }
         viewHolder.binding.txt.setText(apps[position]);
@@ -66,7 +66,7 @@ public class HomeAppAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemCount() {
-        return apps.length - 1;
+        return apps.length;
     }
 
     public void notifyApps() {

@@ -30,7 +30,7 @@ public class MainFragment extends Fragment implements StorageClickListener, Home
 
     private FragmentMainBinding binding;
     private HomeAdapter adapter;
-    private String[] apps = {"Images", "Audio", "Videos", "Zips", "Apps", "Document", "Download", "More"};
+    private String[] apps = {"Images", "Audio", "Videos", "Zips", "Apps", "Document", "Download", "Favorites"};
 
 
     @Override
@@ -42,60 +42,17 @@ public class MainFragment extends Fragment implements StorageClickListener, Home
         getAvailableInternalMemorySize();
         Utils.EXTERNAL_FILE = Environment.getExternalStorageDirectory();
 
-        Log.d("FILEMANHBDJBHDJ", "onCreate: " + Formatter.formatFileSize(getContext(), sdCardTotal_bytes()));
-
-/*
-        PackageManager packageManager = getContext().getPackageManager();
-        Method[] methods = packageManager.getClass().getDeclaredMethods();
-        for (Method m : methods) {
-            if (m.getName().equals("freeStorage")) {
-                // Found the method I want to use
-                Log.d("FILEMANHBDJBHDJ", "onCreate: " + m.getName());
-                try {
-                    long desiredFreeStorage = 8 * 1024 * 1024 * 1024; // Request for 8GB of free space
-                    m.invoke(packageManager, desiredFreeStorage , null);
-                } catch (Exception e) {
-                    // Method invocation failed. Could be a permission problem
-                }
-                break;
-            }
-        }*/
-
-
         Utils.aud(getActivity());
-
-        /*if (Utils.hasStorage(true)) {
-
-            File[] externalDir = new File[0];
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                externalDir = getContext().getExternalCacheDirs();
-            }
-            for (File file1 : externalDir) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    if (Environment.isExternalStorageRemovable(file1)) {
-                        Utils.SD_CARD_FILE = new File(file1.getPath().split("/Android")[0]);
-                        break;
-                    }
-                }
-            }
-
-            getTotalExternalMemorySize();
-            getAvailableExternalMemorySize();
-
-
-        }*/
 
         if (Utils.IS_SD_CARD_EXIST) {
             getTotalExternalMemorySize();
             getAvailableExternalMemorySize();
         }
 
-
         binding.rv.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new HomeAdapter(getActivity(), apps, this, this);
 
         binding.rv.setAdapter(adapter);
-
 
         Executors.newSingleThreadExecutor().execute(new Runnable() {
             @Override
@@ -415,7 +372,7 @@ public class MainFragment extends Fragment implements StorageClickListener, Home
         } else if (apps[6].equals(name)) {
             getActivity().getSupportFragmentManager().beginTransaction().replace(MainActivity.MAIN_CONTAINER, new DownloadFragment()).addToBackStack(null).commit();
         } else if (apps[7].equals(name)) {
-            getActivity().getSupportFragmentManager().beginTransaction().replace(MainActivity.MAIN_CONTAINER, new MoreFragment()).addToBackStack(null).commit();
+            getActivity().getSupportFragmentManager().beginTransaction().replace(MainActivity.MAIN_CONTAINER, new FavouriteFragment()).addToBackStack(null).commit();
         }
     }
 }

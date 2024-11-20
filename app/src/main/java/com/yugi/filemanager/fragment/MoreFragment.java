@@ -20,7 +20,7 @@ import com.yugi.filemanager.utils.Utils;
 public class MoreFragment extends Fragment implements HomeAppClickListener {
 
     private FragmentMoreBinding binding;
-    private String[] apps = {"Images", "Audio", "Videos", "Zips", "Apps", "Document", "Download"};
+    private String[] apps = {"Images", "Audio", "Videos", "Zips", "Apps", "Document", "Download", "Favorite"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,11 +51,6 @@ public class MoreFragment extends Fragment implements HomeAppClickListener {
         }else if (apps[3].equals(name)){
             getActivity().getSupportFragmentManager().beginTransaction().replace(MainActivity.MAIN_CONTAINER,new ZipFragment()).addToBackStack(null).commit();
         } else if (apps[4].equals(name)){
-
-            /*Bundle bundle = new Bundle();
-            bundle.putString("APPS",name);
-            AppsFragment appsFragment = new AppsFragment();
-            appsFragment.setArguments(bundle);*/
             getActivity().getSupportFragmentManager().beginTransaction().replace(MainActivity.MAIN_CONTAINER,new AppsFragment()).addToBackStack(null).commit();
         }else if (apps[5].equals(name)){
             getActivity().getSupportFragmentManager().beginTransaction().replace(MainActivity.MAIN_CONTAINER,new DocumentFragment()).addToBackStack(null).commit();

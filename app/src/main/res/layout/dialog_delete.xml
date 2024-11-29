@@ -12,6 +12,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
             android:background="@drawable/dialog_bg"
+            android:backgroundTint="@color/white"
             app:cardCornerRadius="12dp">
 
 
@@ -29,7 +30,7 @@
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/itc_avant_garde_std_demi"
                     android:text="Delete"
-                    android:textColor="@color/white"
+                    android:textColor="#3c3c3c"
                     android:textSize="22sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -42,8 +43,8 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="12dp"
                     android:fontFamily="@font/itc_avant_garde_std_md"
-                    android:text="Move file to Recycler Bin ?"
-                    android:textColor="#99FFFFFF"
+                    android:text="Bạn có chắc muốn xóa không"
+                    android:textColor="#3c3c3c"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_file_name" />
@@ -56,6 +57,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="20dp"
+                    android:visibility="gone"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:gravity="center_vertical"
@@ -199,7 +201,7 @@
                     android:layout_marginRight="8dp"
                     android:background="@android:color/transparent"
                     android:text="Cancel"
-                    android:textColor="#FFF"
+                    android:textColor="#3c3c3c"
                     android:textAllCaps="false"
                     android:fontFamily="@font/itc_avant_garde_std_md"
                     app:layout_constraintEnd_toStartOf="@+id/btn_delete"

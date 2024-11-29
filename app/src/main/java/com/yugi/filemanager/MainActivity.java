@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
     private ActivityMainBinding binding;
     private HomeAdapter adapter;
-    private String[] apps = {"Images", "Audio", "Videos", "Zips", "Apps", "Document", "Download", "More", "Favorites"};
+    private String[] apps = {"Images", "Audio", "Videos", "Zips", "Apps", "Document", "Download", "Favorites"};
     public static int MAIN_CONTAINER;
 
     @Override

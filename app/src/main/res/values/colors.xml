@@ -9,5 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="main_status_bar">#5529FD</color>
+    <color name="active">#FFBE18</color>
+    <color name="un_active">#BCBCBC</color>
 
 </resources>

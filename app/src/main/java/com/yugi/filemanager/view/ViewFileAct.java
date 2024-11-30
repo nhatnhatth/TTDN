@@ -1,11 +1,11 @@
 package com.yugi.filemanager.view;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.yugi.filemanager.R;
 import com.yugi.filemanager.base.BaseActivity;
 import com.yugi.filemanager.databinding.ActivityViewFileBinding;
-import com.yugi.filemanager.fragment.DocumentFragment;
 import com.yugi.filemanager.fragment.FavouriteFragment;
 
 public class ViewFileAct extends BaseActivity<ActivityViewFileBinding> {
@@ -44,7 +44,7 @@ public class ViewFileAct extends BaseActivity<ActivityViewFileBinding> {
                 break;
             case 6:
                 binding.tittle.setText("Favorites");
-                getSupportFragmentManager().beginTransaction().replace(binding.container.getId(), new FavouriteFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(binding.container.getId(), new FavoriteFragment()).commit();
                 break;
             case 7:
                 break;
@@ -53,6 +53,11 @@ public class ViewFileAct extends BaseActivity<ActivityViewFileBinding> {
 
     @Override
     protected void addEvent() {
-
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 }

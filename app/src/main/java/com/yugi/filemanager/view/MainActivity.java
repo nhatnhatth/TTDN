@@ -17,7 +17,7 @@ import java.util.List;
 
 public class MainActivity extends BaseActivity<ActivityHomeBinding> {
 
-    List<String> list = Arrays.asList("Images", "Audio", "Videos", "Zips", "Apps", "Download", "Favorites");
+    List<String> list = Arrays.asList("Images", "Audio", "Videos", "Zips", "Apps", "Document", "Favorites");
 
     @Override
     protected int getLayoutId() {

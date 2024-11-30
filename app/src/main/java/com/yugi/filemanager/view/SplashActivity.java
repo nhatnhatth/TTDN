@@ -91,6 +91,7 @@ public class SplashActivity extends BaseActivity<ActivitySplashBinding> {
                 }
             }
         });
+        dialog.showDialog(this);
     }
 
     private void startApp() {

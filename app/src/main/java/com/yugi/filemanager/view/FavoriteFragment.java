@@ -30,6 +30,7 @@ public class FavoriteFragment extends BaseFragment<FragmentMediaBinding> {
     @Override
     protected void initView() {
         adapter = new DocAdapter(LoadFilesTask.favFiles, requireActivity());
+        adapter.isFavAdapter = true;
         adapter.setCallback(new OnActionCallback() {
             @Override
             public void callback(String key, Object... data) {

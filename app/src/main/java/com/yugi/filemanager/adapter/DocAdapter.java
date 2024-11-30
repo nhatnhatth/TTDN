@@ -67,6 +67,11 @@ public class DocAdapter extends BaseAdapter<ItemmFile> {
         }
         binding.ivFav.setOnClickListener(view -> {
             mList.get(position).isFav = !mList.get(position).isFav;
+            if(!isFavAdapter){
+                notifyItemChanged(position);
+            }else {
+                notifyItemRemoved(position);
+            }
             if (mList.get(position).isFav) {
                 ItemFile itemFile = new ItemFile();
                 itemFile.setPath(file.getPath());
@@ -86,11 +91,7 @@ public class DocAdapter extends BaseAdapter<ItemmFile> {
                     }
                 }).start();
             }
-            if(!isFavAdapter){
-                notifyItemChanged(position);
-            }else {
-                notifyItemRemoved(position);
-            }
+
         });
         binding.tvFileName.setText(file.getName());
         binding.tvSize.setText(Formatter.formatFileSize(context, file.length()));

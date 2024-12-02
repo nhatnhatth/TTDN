@@ -59,6 +59,8 @@ public class DocAdapter extends BaseAdapter<ItemmFile> {
             binding.imageView4.setImageResource(R.drawable.ic_zips);
         } else if (file.getName().toLowerCase().endsWith(".mp3") || file.getName().toLowerCase().endsWith(".wav")) {
             binding.imageView4.setImageResource(R.drawable.ic_audio);
+        } else if (file.getName().toLowerCase().endsWith(".apk")) {
+            binding.imageView4.setImageResource(R.drawable.ic_apps);
         }
         if (mList.get(position).isFav) {
             holder.binding.ivFav.setImageTintList(ColorStateList.valueOf(context.getColor(R.color.active)));

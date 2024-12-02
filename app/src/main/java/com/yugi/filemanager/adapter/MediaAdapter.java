@@ -38,11 +38,12 @@ public class MediaAdapter extends BaseAdapter<ItemmFile> {
         } else {
             holder.binding.imgAct.setVisibility(View.GONE);
         }
+        holder.itemView.setTag(mList.get(position));
         holder.itemView.setOnClickListener(v -> {
-            callback.callback("", mList.get(position));
+            callback.callback("", holder.itemView.getTag());
         });
         holder.itemView.setOnLongClickListener(v -> {
-            callback.callback("d", mList.get(position));
+            callback.callback("d", holder.itemView.getTag());
             return false;
         });
     }

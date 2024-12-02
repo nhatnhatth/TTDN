@@ -37,10 +37,10 @@ public class DocAdapter extends BaseAdapter<ItemmFile> {
     }
 
     @Override
-    protected void onBindView(RecyclerView.ViewHolder viewHolder, int position) {
+    protected void onBindView(RecyclerView.ViewHolder viewHolder, int pos) {
         ViewHolder holder = (ViewHolder) viewHolder;
         ItemDocBinding binding = holder.binding;
-        File file = mList.get(position).getFile();
+        File file = mList.get(pos).getFile();
         if (file.getName().toLowerCase().endsWith(".doc")) {
             binding.imageView4.setImageResource(R.drawable.ic_doc);
         } else if (file.getName().toLowerCase().endsWith(".docx")) {
@@ -62,12 +62,14 @@ public class DocAdapter extends BaseAdapter<ItemmFile> {
         } else if (file.getName().toLowerCase().endsWith(".apk")) {
             binding.imageView4.setImageResource(R.drawable.ic_apps);
         }
-        if (mList.get(position).isFav) {
+        if (mList.get(pos).isFav) {
             holder.binding.ivFav.setImageTintList(ColorStateList.valueOf(context.getColor(R.color.active)));
         } else {
             holder.binding.ivFav.setImageTintList(ColorStateList.valueOf(context.getColor(R.color.un_active)));
         }
+        holder.itemView.setTag(mList.get(pos));
         binding.ivFav.setOnClickListener(view -> {
+            int position = mList.indexOf((ItemmFile) holder.itemView.getTag());
             mList.get(position).isFav = !mList.get(position).isFav;
             if(!isFavAdapter){
                 notifyItemChanged(position);
@@ -98,9 +100,11 @@ public class DocAdapter extends BaseAdapter<ItemmFile> {
         binding.tvFileName.setText(file.getName());
         binding.tvSize.setText(Formatter.formatFileSize(context, file.length()));
         holder.itemView.setOnClickListener(v -> {
+            int position = mList.indexOf((ItemmFile) holder.itemView.getTag());
             callback.callback("", mList.get(position));
         });
         holder.itemView.setOnLongClickListener(v -> {
+            int position = mList.indexOf((ItemmFile) holder.itemView.getTag());
             callback.callback("d", mList.get(position));
             return false;
         });

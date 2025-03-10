@@ -12,7 +12,6 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nhóm 4"
         android:textColor="@color/white"
         android:textSize="40sp"
         android:textStyle="bold"
